@@ -32,18 +32,18 @@ Layout::Layout()
 
 
 	//Define Rooms
-	Room* porch = new Room("Porch", "Description");
-	Room* corr1 = new Room("Corridor 1", "Description");
-	Room* dinn = new Room("Dinning Room", "Description");
-	Room* hall = new Room("Hall", "Description");
-	Room* study = new  Room("Study", "Description");
-	Room* corr2 = new Room("Corridor 2", "Description");
-	Room* draw = new Room("Drawing Room", "Description");
-	Room* pantry1 = new Room("Pantry 1", "Description");
-	Room* pantry2 = new Room("Pantry 2", "Description");
-	Room* kitpass = new Room("Kitchen Passage", "Description");
-	Room* couyar = new Room("Courtyard", "Description");
-	Room* kitchen = new Room("Kitchen", "Description");
+	Room* porch = new Room("Porch", "It sits shrouded in a perpetual mist, its weathered wooden floorboards creaking underfoot as ghostly apparitions drift silently past antique rocking chairs, their spectral forms barely visible in the moonlight filtering through tattered curtains.");
+	Room* corr1 = new Room("Corridor 1", "It stretches ominously into darkness, its walls adorned with cracked portraits of long-forgotten ancestors, their eyes seeming to follow your every move as the floorboards creak beneath your hesitant steps, while a cold draft whispers chilling secrets from unseen alcoves.");
+	Room* dinn = new Room("Dinning Room", "Frozen in time with cobweb-covered chandeliers casting eerie shadows over a decrepit table set with tarnished silverware, while ghostly whispers echo from the fireplace.");
+	Room* hall = new Room("Hall", "Its towering ceilings draped with tattered tapestries depicting scenes of long-past glory, when lighted by a candle, dancing shadows upon the worn marble floors can be seen, and the faint echo of ghostly footsteps reverberates through its echoing expanse.");
+	Room* study = new  Room("Study", "With shelves of ancient tomes covered in dust and cobwebs lining the walls, their spines cracked and pages yellowed with age, while the scent of old parchment mingles with the faint whispers of forgotten knowledge that seem to linger in the air, and the dim glow of a single oil lamp barely illuminates the ghostly silhouette of a desk where spectral quills seem to scribble phantom words upon parchment.");
+	Room* corr2 = new Room("Corridor 2", "A passage of whispers, where the faint glow of flickering candles barely illuminates the peeling wallpaper adorned with twisted patterns, while the floorboards groan underfoot as if burdened by the weight of unseen spirits, and the shadows seem to elongate into spectral figures that vanish with each fleeting glance.");
+	Room* draw = new Room("Drawing Room", "With shelves of ancient tomes covered in dust and cobwebs lining the walls, their spines cracked and pages yellowed with age, while the scent of old parchment mingles with the faint whispers of forgotten knowledge that seem to linger in the air, and the dim glow of a single oil lamp barely illuminates the ghostly silhouette of a desk where spectral quills seem to scribble phantom words upon parchment.");
+	Room* pantry1 = new Room("Pantry 1", "A realm of forgotten sustenance, shelves lined with dusty jars of preserved goods that have long since turned to relics of a bygone era, while the faint scent of decay mingles with the musty aroma of ancient spices, and the shadows seem to dance among the cobweb-covered crates as if hiding secrets from the world above.");
+	Room* pantry2 = new Room("Pantry 2", "A chilling echo of its former purpose, shelves stacked with rusted cans and decaying provisions, while the cold seeps through cracked windows, frosting over forgotten jars of pickled produce and casting eerie reflections in the dim light, as if the very essence of sustenance has been consumed by the house's spectral inhabitants.");
+	Room* kitpass = new Room("Kitchen Passage", "A chilling echo of its former purpose, shelves stacked with rusted cans and decaying provisions, while the cold seeps through cracked windows, frosting over forgotten jars of pickled produce and casting eerie reflections in the dim light, as if the very essence of sustenance has been consumed by the house's spectral inhabitants.");
+	Room* couyar = new Room("Courtyard", "It is a chilling echo of its former purpose, shelves stacked with rusted cans and decaying provisions, while the cold seeps through cracked windows, frosting over forgotten jars of pickled produce and casting eerie reflections in the dim light, as if the very essence of sustenance has been consumed by the house's spectral inhabitants.");
+	Room* kitchen = new Room("Kitchen", "A chilling echo of its former purpose, shelves stacked with rusted cans and decaying provisions, while the cold seeps through cracked windows, frosting over forgotten jars of pickled produce and casting eerie reflections in the dim light, as if the very essence of sustenance has been consumed by the house's spectral inhabitants.");
 
 	porch->setLinkedRoom(North, corr1);
 
