@@ -95,7 +95,7 @@ SO THAT I can be entertain and learn more about text-based adventure game develo
 
 ## License 
 
-MIT License [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+Attribution-NonCommercial 4.0 International (https://creativecommons.org/licenses/by-nc/4.0/)
 
 
 
