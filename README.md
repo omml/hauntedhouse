@@ -112,5 +112,5 @@ tbc
 
 ## Contribution
 * If you would like to contribute to this application, please contact me via
-  * GitHub [https://github.com/HaveTimeDrinkTea](https://github.com/omml)
+  * GitHub [https://github.com/omml](https://github.com/omml)
   * email to <omml@hotmail.com>
