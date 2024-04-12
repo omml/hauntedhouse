@@ -1,3 +1,9 @@
+//
+//  Layout.cpp
+//  Borley Rectory Haunted Mansion Text-Based Console Game
+//
+//  Created by Oscar Martinez on 21/03/2024.
+//
 #include "Layout.h"
 #include "CommonDefinitions.h"
 #include "Item.h"
@@ -150,7 +156,7 @@ Layout::Layout()
 	Item* pan1Matches = new ItemPickStore("Matches", "Old matches", "On a shelve on the west wall");
 	pan1Matches->setVisibleInDark(true);
 	pan1Matches->setCanLightItems(true);
-	//pantry1->setItem(pan1Matches);
+	pantry1->setItem(pan1Matches);
 	corr1->setItem(pan1Matches);
 	//Add variable to change from dark to lighted when carrying the candle lighted
 	//Do not display all items if it is not lighted

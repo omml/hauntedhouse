@@ -1,3 +1,9 @@
+//
+//  Item.h
+//  Borley Rectory Haunted Mansion Text-Based Console Game
+//
+//  Created by Oscar Martinez on 21/03/2024.
+//
 #pragma once
 #ifndef ITEM_H
 #define ITEM_H
@@ -9,6 +15,7 @@
 
 class Action;
 
+// Class that holds funtionality for objects found in the rooms
 class Item : public MainObject
 {
 public:
