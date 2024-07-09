@@ -6,6 +6,7 @@
 //
 #pragma once
 #include "MainObject.h"
+
 class Character : public MainObject
 {
 public:

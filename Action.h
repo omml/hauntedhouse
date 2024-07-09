@@ -7,9 +7,11 @@
 #pragma once
 #ifndef ACTION_H
 #define ACTION_H
-#include "MainObject.h"
-#include "CommonDefinitions.h"
+
 #include <vector>
+
+#include "CommonDefinitions.h"
+#include "MainObject.h"
 
 class Item;
 

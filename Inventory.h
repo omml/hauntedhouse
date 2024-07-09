@@ -3,18 +3,14 @@
 //  Borley Rectory Haunted Mansion Text-Based Console Game
 //
 //  Created by Pei WANG on 21/03/2024.
+//  Modified by Oscar Martinez 22/03/2024 and later
 //
 
-//
-//  Inventory.cpp
-//  Borley Rectory Haunted Mansion Text-Based Console Game
-//
-//  Created by Pei WANG on 21/03/2024.
-//
 #pragma once
 
 #include <iostream>
 #include <vector>
+
 #include "Item.h"
 
 using namespace std;

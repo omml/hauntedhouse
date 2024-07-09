@@ -9,9 +9,9 @@
 #define ITEM_H
 
 #include <vector>
-#include "MainObject.h"
-#include "CommonDefinitions.h"
 
+#include "CommonDefinitions.h"
+#include "MainObject.h"
 
 class Action;
 

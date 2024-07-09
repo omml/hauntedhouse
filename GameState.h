@@ -6,8 +6,8 @@
 //
 #pragma once
 
-#include "Room.h"
 #include "Inventory.h"
+#include "Room.h"
 
 class GameState
 {

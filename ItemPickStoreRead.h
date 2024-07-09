@@ -6,6 +6,7 @@
 //
 #pragma once
 #include "ItemPickStore.h"
+
 class ItemPickStoreRead : public ItemPickStore
 {
 public:

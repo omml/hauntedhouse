@@ -7,8 +7,9 @@
 #pragma once
 
 #include <vector>
-#include "MainObject.h"
+
 #include "Item.h"
+#include "MainObject.h"
 
 using namespace std;
 

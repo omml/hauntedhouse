@@ -4,19 +4,18 @@
 //
 //  Created by Oscar Martinez on 21/03/2024.
 //
-#include "Layout.h"
-#include "CommonDefinitions.h"
-#include "Item.h"
+#include "ActionClimb.h"
+#include "ActionMove.h"
 #include "ActionPick.h"
 #include "ActionStore.h"
 #include "ActionWear.h"
-#include "ActionMove.h"
-#include "ActionClimb.h"
-#include "ItemPickStoreLight.h"
-#include "ItemPickWear.h"
+#include "CommonDefinitions.h"
+#include "Item.h"
 #include "ItemMoveClimb.h"
+#include "ItemPickStoreLight.h"
 #include "ItemPickStoreRead.h"
-
+#include "ItemPickWear.h"
+#include "Layout.h"
 
 Layout::Layout() 
 {

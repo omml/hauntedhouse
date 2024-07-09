@@ -6,6 +6,7 @@
 //
 #pragma once
 #include "ItemMove.h"
+
 class ItemMoveClimb : public ItemMove
 {
 public:

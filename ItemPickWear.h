@@ -6,6 +6,7 @@
 //
 #pragma once
 #include "ItemPick.h"
+
 class ItemPickWear : public ItemPick
 {
 public:
