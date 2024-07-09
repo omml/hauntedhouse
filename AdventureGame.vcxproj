@@ -144,6 +144,7 @@
     <ClCompile Include="Character.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="GameState.cpp" />
+    <ClCompile Include="GUIHandler.cpp" />
     <ClCompile Include="Inventory.cpp" />
     <ClCompile Include="Item.cpp" />
     <ClCompile Include="ItemPickStoreLight.cpp" />
@@ -173,6 +174,7 @@
     <ClInclude Include="CommonDefinitions.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="GameState.h" />
+    <ClInclude Include="GUIHandler.h" />
     <ClInclude Include="Inventory.h" />
     <ClInclude Include="Item.h" />
     <ClInclude Include="ItemPickStoreLight.h" />
