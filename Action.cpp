@@ -16,3 +16,8 @@ void Action::setReceiver(Item* r)
 {
 	_posibleReceivers.push_back(r);
 }
+
+ActionIdentifier Action::GetActionID()
+{
+	return _actionId;
+}

@@ -8,6 +8,7 @@
 #ifndef ACTION_H
 #define ACTION_H
 #include "MainObject.h"
+#include "CommonDefinitions.h"
 #include <vector>
 
 class Item;
@@ -18,9 +19,13 @@ public:
 	Action(const string name, const string desc);
 	void setReceiver(Item* r);
 	virtual ~Action() {}
+	ActionIdentifier GetActionID();
 
 private:
 	vector<Item*> _posibleReceivers = {};
+protected:
+	ActionIdentifier _actionId;
+
 };
 
 #endif

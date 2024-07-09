@@ -8,5 +8,5 @@
 
 ActionWear::ActionWear() : Action("Wear", "Wears an item")
 {
-
+	_actionId = AIDWear;
 }

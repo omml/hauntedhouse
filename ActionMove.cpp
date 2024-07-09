@@ -8,5 +8,5 @@
 
 ActionMove::ActionMove() : Action("Move", "Moves an item")
 {
-
+	_actionId = AIDMove;
 }

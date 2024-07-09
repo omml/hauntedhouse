@@ -8,4 +8,5 @@
 
 ActionDrop::ActionDrop() : Action("Drop", "Drops an item")
 {
+	_actionId = AIDDrop;
 }

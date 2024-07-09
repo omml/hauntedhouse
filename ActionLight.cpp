@@ -8,4 +8,5 @@
 
 ActionLight::ActionLight() : Action("Light", "Lights an item")
 {
+	_actionId = AIDLight;
 }

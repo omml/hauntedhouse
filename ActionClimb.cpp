@@ -8,5 +8,5 @@
 
 ActionClimb::ActionClimb() : Action("Climb", "Climbs an item")
 {
-
+	_actionId = AIDClimb;
 }

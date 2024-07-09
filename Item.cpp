@@ -63,7 +63,7 @@ void Item::displayActions()
 {
 	for (int i = 0; i < _actions.size(); i++)
 	{
-		cout << "[" << i + 1 << "]" << " " << _actions[i]->getName() << "`\n";
+		cout << "[" << i + 1 << "]" << " " << _actions[i]->getName() << "\n";
 	}
 }
 

@@ -8,5 +8,5 @@
 
 ActionRead::ActionRead() : Action("Read", "Read an item")
 {
-
+	_actionId = AIDRead;
 }

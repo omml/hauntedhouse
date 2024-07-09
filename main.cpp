@@ -27,18 +27,8 @@ using namespace std;
 GUIState guiState;
 string guiStrings[] = { "Main", "Move", "Explore", "Inventory"};
 
-string intro = "Borley Rectory, located in Borley, Essex, was famously known as 'The most haunted house in England'.\nBuilt in 1862 and demolished in 1944, it gained notoriety for alleged paranormal activity.\n\nYour playful little bro <Milo> has gone into the haunted house and he is trapped in it by the <Ghost of the Headless Man>. Enter the house and rescue him!";
+string intro = "Borley Rectory, located in Borley, Essex, was famously known as 'The most haunted house in England'.\nBuilt in 1862 and demolished in 1944, it gained notoriety for alleged paranormal activity.\n\nYour playful little bro 'Milo' has gone into the haunted house and he is trapped in it by the 'Ghost of the Headless Man'. Enter the house and rescue him!";
 
-
-int main2()
-{
-    return 0;
-    Character c = Character("hola", "hola2");
-
-    cout << c.getName() << endl;
-    cout << c.getDesc() << endl;
-
-}
 
 bool IsMovingAction(Action* a)
 {
@@ -56,15 +46,22 @@ bool HandleAction(Room* r, Action* a, Item* item, Inventory* hand, Inventory* ba
 {
     bool retVal = false;
 
-    if (ActionPick* aPick = dynamic_cast<ActionPick*>(a))
+    switch(a->GetActionID())
     {
+    case AIDPick:
+        // Check if we are holding an item
         if (item->getNumHoldingItems() == 0)
         {
+            // Add the item to hand inventory
             if (hand->addItem(item, m))
             {
+                // Set time as picked
                 item->picked();
+                // Remove item from room if in room
                 r->removeItem(item);
+                // Remove item from bag if in bag
                 bag->removeItem(item);
+                // Remove item from wearing if wearing
                 body->removeItem(item);
                 *m = "The " + item->getName() + " was picked and now you are holding it";
                 retVal = true;
@@ -79,21 +76,29 @@ bool HandleAction(Room* r, Action* a, Item* item, Inventory* hand, Inventory* ba
             *m = "The " + item->getName() + " can not be picked while it is hokding items";
             retVal = false;
         }
-    }
-    else if (ActionStore* aStore = dynamic_cast<ActionStore*>(a))
-    {
+        break;
+
+    case AIDStore:
+        // Add item to bag inventory
         if (bag->addItem(item, m))
         {
+            // Check if is an item that can be lighted
             if (item->isPickStoreLight())
             {
+                // Check if it is lighted
                 if (item->getState() == Lighted)
                 {
+                    // Unlight it
                     r->setIsLighted(false, false);
                 }
             }
+            // Set item as stored
             item->stored();
+            // Remove it from room 
             r->removeItem(item);
+            // Remove it from hand if in hand
             hand->removeItem(item);
+            // Remove it from body if in body
             body->removeItem(item);
             *m = "The " + item->getName() + " was stored in your bag";
             retVal = true;
@@ -102,27 +107,38 @@ bool HandleAction(Room* r, Action* a, Item* item, Inventory* hand, Inventory* ba
         {
             retVal = false;
         }
-    }
-    else if (ActionDrop* aDrop = dynamic_cast<ActionDrop*>(a))
-    {
+        break;
+
+    case AIDDrop:
+        // Set item as dropped
         item->dropped();
+        // Add it to the room
         r->setItem(item);
+        // Set if room has a candle
         r->hasDroppedCandle(item);
         item->setPosDesc("Laying on the floor");
         
+        // Remove it from hand if in hand
         hand->removeItem(item);
+        // Remove it from bag if in bag
         bag->removeItem(item);
+        // Remove from body if in body
         body->removeItem(item);
         *m = "The " + item->getName() + " has been dropped to the floor";
         retVal = true;
-    }
-    else if (ActionWear* aWear = dynamic_cast<ActionWear*>(a))
-    {
+        break;
+
+    case AIDWear:
+        // Add item to body inventory
         if (body->addItem(item, m))
         {
+            // Set item as wore
             item->wore();
+            // Remove from roon
             r->removeItem(item);
+            // Remove from hand if in hand
             hand->removeItem(item);
+            // Remove from bag if in bag
             bag->removeItem(item);
             *m = "You are wearing the " + item->getName();
             
@@ -132,19 +148,21 @@ bool HandleAction(Room* r, Action* a, Item* item, Inventory* hand, Inventory* ba
         {
             retVal = false;
         }
-    }
-    else if (ActionMove* aMove = dynamic_cast<ActionMove*>(a))
-    {
+        break;
+
+    case AIDMove:
+        // Move to a location in index moveIdx
         item->moved(moveIdx);
 
         *m = "The " + item->getName() + " has been moved";
         retVal = true;
-    }
-    else if (ActionLight* aLight = dynamic_cast<ActionLight*>(a))
-    {
-        //Check if we are holding matches
+        break;
+
+    case AIDLight:
+        // Check if we are holding matches
         if (hand->areThereMatches() == true)
         {
+            // Check if we have a free hand to light the item
             if (hand->getNumItems() == 1)
             {
                 retVal = true;
@@ -160,6 +178,7 @@ bool HandleAction(Room* r, Action* a, Item* item, Inventory* hand, Inventory* ba
         }
         else
         {
+            // Matches are need to light
             if (bag->areThereMatches() == true)
             {
                 retVal = false;
@@ -171,19 +190,25 @@ bool HandleAction(Room* r, Action* a, Item* item, Inventory* hand, Inventory* ba
                 *m = "You need matches";
             }
         }
-    }
-    else if (ActionRead* aRead = dynamic_cast<ActionRead*>(a))
-    {
+        break;
+
+    case  AIDRead:
+        // Read item
         *m = item->read();
         retVal = true;
-    }
-    else if (ActionClimb* aClimb = dynamic_cast<ActionClimb*>(a))
-    {
+        break;
+
+    case AIDClimb:
+
+        // Climb item
         GameState::getInstance().setClimbedItem(item);
 
         *m = "You climbed the " + item->getName();
 
         retVal = true;
+        break;
+    default:
+        break;
     }
 
     return retVal;
@@ -227,6 +252,7 @@ int main()
 
         currentRoom = GameState::getInstance().getCurrentRoom();
 
+        // Display game state
         cout << "Standing in the "
             + currentRoom->getName()
             + ": \n\n"
@@ -238,6 +264,9 @@ int main()
         switch (guiState)
         {
         case MainGUI:
+            // Main GUI
+
+            // Check if is climbing, if it is not
             if (GameState::getInstance().getCurrentRoomLevel() == 0)
             {
                 cout << "Main Options:\n";
@@ -251,6 +280,7 @@ int main()
 
                 message = "";
 
+                // Check selected option
                 switch (mainOption)
                 {
                 case 1:
@@ -266,6 +296,7 @@ int main()
             }
             else
             {
+                // If it is climbing
                 cout << "You are on top of the " << GameState::getInstance().getClimbedItem()->getName() << endl << endl;
 
                 cout << "Main Options:\n";
@@ -278,6 +309,7 @@ int main()
 
                 message = "";
 
+                // Check selected option
                 switch (mainOption)
                 {
                 case 1:
@@ -290,14 +322,18 @@ int main()
             }
             break;
         case MoveGUI:
+            // Move items GUI
+
             cout << "Move Options:\n";
             cout << "[0] Go Back\n";
 
+            // Display connected rooms
             currentRoom->displayRooms();
             
             cout << "\nSelect an option > ";
             cin >> moveOption;
 
+            // Check selected option
             if (moveOption == 0)
             {
                 guiState = MainGUI;
@@ -306,6 +342,7 @@ int main()
             {
                 message = "";
 
+                // Change current room
                 next = currentRoom->getLinkedRoom(moveOption - 1);
                 if (next != nullptr)
                 {
@@ -315,6 +352,9 @@ int main()
             }
             break;
         case ExploreGUI:
+            // Explore room GUI
+
+            // Check if it is climbing, if it is not
             if (GameState::getInstance().getCurrentRoomLevel() == 0)
             {
                 cout << message << endl << endl;
@@ -322,11 +362,13 @@ int main()
                 cout << "Explore Options:\n";
                 cout << "[0] Go Back\n";
 
+                // Display items in room
                 currentRoom->displayItems();
 
                 cout << "\nSelect an option > ";
                 cin >> exploreOption;
 
+                // Check selected option
                 if (exploreOption == 0)
                 {
                     guiState = MainGUI;
@@ -340,6 +382,8 @@ int main()
             }
             else
             {
+                // If it is climbing
+
                 cout << message << endl << endl;
 
                 cout << "Explore Options:\n";
@@ -357,12 +401,14 @@ int main()
                 cout << "\nSelect an option > ";
                 cin >> exploreOption;
 
+                // Check selected option
                 if (exploreOption == 0)
                 {
                     guiState = MainGUI;
                 }
                 else if(climbedItem != nullptr)
                 {
+                    // Check if there viewable items from climbed position
                     if (exploreOption > 0 && exploreOption <= climbedItem->getCurrentDestination()->getNumViewableItems())
                     {
                         message = "";
@@ -374,12 +420,17 @@ int main()
 
             break;
         case ItemGUI:
+            // Available items GUI
+
+            // Check if it is climbing
             if (GameState::getInstance().getCurrentRoomLevel() == 0)
             {
+                // Display room items
                 currentItem = currentRoom->getItem(exploreOption - 1);
             }
             else
             {
+                // Display items viewable from climbed position
                 currentItem = climbedItem->getCurrentDestination()->getViewableItem();
             }
 
@@ -396,6 +447,7 @@ int main()
             cout << "\nSelect an option > ";
             cin >> itemOption;
 
+            // Check selected option
             if (itemOption == 0)
             {
                 guiState = ExploreGUI;
@@ -406,10 +458,12 @@ int main()
 
                 Action* a = currentItem->getAction(itemOption - 1);
 
+                // Check if item can be moved
                 if (IsMovingAction(a))
                 {
                     guiState = MovingGUI;
                 }
+                // Handle action
                 else if (HandleAction(currentRoom, a, currentItem, &hands, &bag, &body, &message, -1))
                 {
                     climbedItem = currentItem;
@@ -418,6 +472,8 @@ int main()
             }
             break;
         case MovingGUI:
+            // Move GUI
+
             currentItem = currentRoom->getItem(exploreOption - 1);
 
             cout << currentItem->getDisplayString() << endl << endl;
@@ -425,11 +481,13 @@ int main()
             cout << "Move Options:\n";
             cout << "[0] Go Back\n";
 
+            // Display moving options
             currentItem->displayDestinations();
 
             cout << "\nSelect an option > ";
             cin >> moveOption;
 
+            // Check selected option
             if (moveOption == 0)
             {
                 guiState = ExploreGUI;
@@ -440,6 +498,7 @@ int main()
 
                 Action* a = currentItem->getAction(itemOption - 1);
 
+                // Handle moving action
                 if (HandleAction(currentRoom, a, currentItem, &hands, &bag, &body, &message, moveOption - 1 ))
                 {
                     guiState = ItemGUI;
@@ -448,6 +507,7 @@ int main()
 
             break;
         case SelectInventoryGUI:
+            // Inventory GUI
 
             message = "";
 
@@ -475,6 +535,7 @@ int main()
 
             cout << message << endl << endl;
 
+            // Display items in inventory
             if (selectInventoryOption == 1)
             {
                 cout << "Carrying in hands, options:\n";
@@ -512,6 +573,8 @@ int main()
             }
             break;
         case InventoryItemGUI:
+            // GUI for items in inventories
+
             string description = "";
 
             cout << message << endl << endl;
@@ -553,6 +616,7 @@ int main()
 
                 Action* a = currentItem->getAction(itemOption - 1);
 
+                // Handle item action
                 if (HandleAction(currentRoom, a, currentItem, &hands, &bag, &body, &message, -1))
                 {
                     guiState = InventoryGUI;

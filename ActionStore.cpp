@@ -8,4 +8,5 @@
 
 ActionStore::ActionStore() : Action("Store", "Stores an item")
 {
+	_actionId = AIDStore;
 }
