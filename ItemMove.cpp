@@ -28,7 +28,7 @@ void ItemMove::displayDestinations()
 {
 	for (int i = 0; i < _destinations.size(); i++)
 	{
-		cout << "[" << i + 1 << "]" << " Move in front of " << _destinations[i]->getName() << "`\n";
+		cout << "[" << i + 1 << "]" << " Move in front of " << _destinations[i]->getName() << "\n";
 	}
 }
 

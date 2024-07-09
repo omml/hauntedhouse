@@ -134,6 +134,7 @@
     <ClCompile Include="Action.cpp" />
     <ClCompile Include="ActionClimb.cpp" />
     <ClCompile Include="ActionDrop.cpp" />
+    <ClCompile Include="ActionHandler.cpp" />
     <ClCompile Include="ActionLight.cpp" />
     <ClCompile Include="ActionMove.cpp" />
     <ClCompile Include="ActionPick.cpp" />
@@ -161,6 +162,7 @@
     <ClInclude Include="Action.h" />
     <ClInclude Include="ActionClimb.h" />
     <ClInclude Include="ActionDrop.h" />
+    <ClInclude Include="ActionHandler.h" />
     <ClInclude Include="ActionLight.h" />
     <ClInclude Include="ActionMove.h" />
     <ClInclude Include="ActionPick.h" />
