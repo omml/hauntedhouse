@@ -170,11 +170,142 @@ Layout::Layout()
 	dinn->setItem(dinChair);
 
 	//Add items to study room
+	//Add bookshelf on the left 
 	ItemContainer* bookShelf1 = new ItemContainer("Bookshelf", "An old but full bookshelf", "On the left wall");
 	study->setItem(bookShelf1);
-	Item* bookShelf1Book1 = new ItemPickStoreRead("Book", "How to cook vegetables", "", "Put carrots, potatos and onions in a frying pan. Put some oil and fry for 10 minutes.");
-	bookShelf1->setItemInside(bookShelf1Book1, &tmpString);
+	//Add books to left wall bookshelf
+	Item* bookShelf1Book = new ItemPickStoreRead("Book", "The Haunted Lullabies: Songs of the Damned", "", "Sing these cursed lullabies under the full moon to summon spirits. Beware, for not all spirits are friendly. The final lullaby calls forth the weeping woman, a ghost of tragedy.");
+	bookShelf1->setItemInside(bookShelf1Book, &tmpString);
+	bookShelf1Book = new ItemPickStoreRead("Book", "Cryptic Runes: Deciphering the Symbols of Darkness", "", "These ancient runes, when inscribed in blood, unlock hidden doors to realms best left unexplored. Each rune holds a different power, but deciphering them wrong can bring about untold horrors.");
+	bookShelf1->setItemInside(bookShelf1Book, &tmpString);
+	bookShelf1Book = new ItemPickStoreRead("Book", "Wendigo Tales: Encounters in the Frozen North", "", "Detailed accounts of explorers who ventured into the icy wilderness and encountered the Wendigo. These stories serve as warnings of the beast’s insatiable hunger for human flesh.");
+	bookShelf1->setItemInside(bookShelf1Book, &tmpString);
+	bookShelf1Book = new ItemPickStoreRead("Book", "Phantom Shadows: Ghosts of the Forgotten Asylum", "", "Stories of patients who died under mysterious circumstances. Their restless spirits now haunt the corridors, seeking revenge on those who wronged them.");
+	bookShelf1->setItemInside(bookShelf1Book, &tmpString);
+	bookShelf1Book = new ItemPickStoreRead("Book", "Demonic Incantations: Words of Power", "", "Chant these ancient incantations to call upon demonic entities. Each spell has a unique effect, but be cautious; demons are notorious tricksters.");
+	bookShelf1->setItemInside(bookShelf1Book, &tmpString);
+	bookShelf1Book = new ItemPickStoreRead("Book", "The Cursed Relics: Artifacts of Malevolence", "", "A catalog of cursed artifacts found across the globe. Each relic brings misfortune to its possessor, from causing madness to summoning malevolent spirits.");
+	bookShelf1->setItemInside(bookShelf1Book, &tmpString);
+	bookShelf1Book = new ItemPickStoreRead("Book", "Twisted Fairytales: Stories to Terrorize", "", "Classic fairytales reimagined with dark twists. Happy endings are rare, and the creatures of these stories are more sinister than they appear.");
+	bookShelf1->setItemInside(bookShelf1Book, &tmpString);
+	bookShelf1Book = new ItemPickStoreRead("Book", "Nightmares of the Deep: Sea Monsters and Specters", "", "Tales of sailors encountering horrific creatures beneath the waves. The Kraken, ghost ships, and cursed treasures lurk in these stories, waiting to drag the unwary to their doom.");
+	bookShelf1->setItemInside(bookShelf1Book, &tmpString);
+	bookShelf1Book = new ItemPickStoreRead("Book", "Enchantment of the OtherWorlds: Potions from Centuries Past", "", "Gather spider blood, cockroach legs, and avocado leaves. Put cooking oil in a frying pan, fry for 20 minutes. Empty result into a molcajete to crush and grind. Use resulting paste to paint; strange things can happen depending on what you paint.");
+	bookShelf1->setItemInside(bookShelf1Book, &tmpString);
+	bookShelf1Book = new ItemPickStoreRead("Book", "Forbidden Rituals: Ceremonies of the Damned", "", "Descriptions of occult rituals performed by secret cults. Performing these rituals grants power at a terrible price, often requiring blood sacrifices and eternal servitude.");
+	bookShelf1->setItemInside(bookShelf1Book, &tmpString);
+	bookShelf1Book = new ItemPickStoreRead("Book", "The Whispering Woods: Legends of Forest Spirits", "", "Folklore about spirits dwelling in dark forests. They lure travelers off the path, leading them to their doom. Some stories tell of ways to appease these spirits and gain their favor.");
+	bookShelf1->setItemInside(bookShelf1Book, &tmpString);
+	bookShelf1Book = new ItemPickStoreRead("Book", "Vampire Chronicles: The Bloodthirsty Night", "", "Accounts of vampire sightings and attacks throughout history. Details on vampire hunters and methods to ward off these bloodthirsty creatures.");
+	bookShelf1->setItemInside(bookShelf1Book, &tmpString);
+	bookShelf1Book = new ItemPickStoreRead("Book", "The Unseen Watchers: Tales of Invisible Stalkers", "", "Chilling stories of entities that cannot be seen by the naked eye but leave behind evidence of their presence. Victims often go mad, driven by the feeling of being watched.");
+	bookShelf1->setItemInside(bookShelf1Book, &tmpString);
+	bookShelf1Book = new ItemPickStoreRead("Book", "The Dark Carnival: Spectacles of Horror", "", "Accounts of a traveling carnival that appears without warning. Each attraction holds a deadly secret, and visitors often leave changed or do not leave at all.");
+	bookShelf1->setItemInside(bookShelf1Book, &tmpString);
+	bookShelf1Book = new ItemPickStoreRead("Book", "Possessed Dolls: Playthings of the Damned", "", "Stories of dolls possessed by malevolent spirits. These cursed toys bring misfortune and death to their owners, often moving on their own and whispering dark secrets.");
+	bookShelf1->setItemInside(bookShelf1Book, &tmpString);
+	bookShelf1Book = new ItemPickStoreRead("Book", "Lich's Grimoire: Secrets of Undeath", "", "A guide to becoming a lich, an undead sorcerer with immense power. The transformation requires dark rituals and the sacrifice of one's humanity.");
+	bookShelf1->setItemInside(bookShelf1Book, &tmpString);
+	bookShelf1Book = new ItemPickStoreRead("Book", "Shadow Beasts: Predators of the Darkness", "", "Descriptions of nocturnal creatures that hunt in the shadows. These beasts are nearly invisible in the dark and are attracted to fear and blood.");
+	bookShelf1->setItemInside(bookShelf1Book, &tmpString);
+	bookShelf1Book = new ItemPickStoreRead("Book", "The Bone Collector: Stories of Grave Robbers", "", "Tales of grave robbers who disturbed the dead and faced horrific consequences. The dead do not rest easy, and their wrath is terrifying.");
+	bookShelf1->setItemInside(bookShelf1Book, &tmpString);
+	bookShelf1Book = new ItemPickStoreRead("Book", "Eyewitness Accounts: Encounters with the Paranormal", "", "First-hand accounts of ghost sightings, poltergeist activity, and other paranormal phenomena. These stories provide chilling details of the unexplained.");
+	bookShelf1->setItemInside(bookShelf1Book, &tmpString);
+	bookShelf1Book = new ItemPickStoreRead("Book", "Hexes and Curses: Magic of Vengeance", "", "Instructions for casting powerful hexes and curses. These spells are intended to bring suffering to one's enemies but often backfire, bringing misfortune to the caster as well.");
+	bookShelf1->setItemInside(bookShelf1Book, &tmpString);
 
+	//Add bookshelf on the right wall
+	ItemContainer* bookShelf2 = new ItemContainer("Bookshelf", "An old but full bookshelf", "On the right wall");
+	study->setItem(bookShelf2);
+	//Add books to the the right wall bookshelf
+	Item* bookShelf2Book = new ItemPickStoreRead("Book", "Baking Delicious Pastries", "", "Combine flour, sugar, and butter in a bowl. Mix until dough forms. Roll out the dough, cut into shapes, and bake at 350°F for 15 minutes.");
+	bookShelf2->setItemInside(bookShelf2Book, &tmpString);
+	bookShelf2Book = new ItemPickStoreRead("Book", "Simple Soups and Stews", "", "Chop celery, carrots, and potatoes. Add to a pot with chicken broth. Simmer for 45 minutes until vegetables are tender.");
+	bookShelf2->setItemInside(bookShelf2Book, &tmpString);
+	bookShelf2Book = new ItemPickStoreRead("Book", "Perfect Pasta Dishes", "", "Boil pasta in salted water until al dente. In a separate pan, sauté garlic and tomatoes in olive oil. Combine with pasta and serve.");
+	bookShelf2->setItemInside(bookShelf2Book, &tmpString);
+	bookShelf2Book = new ItemPickStoreRead("Book", "Grilling Meats to Perfection", "", "Marinate chicken breasts in olive oil, lemon juice, and herbs. Grill over medium heat for 6-7 minutes per side until cooked through.");
+	bookShelf2->setItemInside(bookShelf2Book, &tmpString);
+	bookShelf2Book = new ItemPickStoreRead("Book", "Savory Stir-Fries", "", "Slice bell peppers, onions, and beef. Stir-fry in a hot pan with soy sauce and ginger for 5-7 minutes. Serve over rice.");
+	bookShelf2->setItemInside(bookShelf2Book, &tmpString);
+	bookShelf2Book = new ItemPickStoreRead("Book", "Homemade Bread Recipes", "", "Mix yeast, warm water, and sugar. Let sit until foamy. Add flour and salt, knead into dough. Let rise, then bake at 375°F for 30 minutes.");
+	bookShelf2->setItemInside(bookShelf2Book, &tmpString);
+	bookShelf2Book = new ItemPickStoreRead("Book", "Hearty Breakfast Ideas", "", "Whisk eggs with milk, salt, and pepper. Pour into a hot pan, add cheese and spinach. Cook until eggs are set.");
+	bookShelf2->setItemInside(bookShelf2Book, &tmpString);
+	bookShelf2Book = new ItemPickStoreRead("Book", "Delicious Desserts", "", "Melt chocolate in a double boiler. Dip strawberries in melted chocolate and place on parchment paper to cool.");
+	bookShelf2->setItemInside(bookShelf2Book, &tmpString);
+	bookShelf2Book = new ItemPickStoreRead("Book", "Healthy Smoothies", "", "Blend spinach, banana, and almond milk until smooth. Add ice cubes and blend again for a refreshing drink.");
+	bookShelf2->setItemInside(bookShelf2Book, &tmpString);
+	bookShelf2Book = new ItemPickStoreRead("Book", "Creative Salads", "", "Combine mixed greens, cherry tomatoes, and cucumbers in a bowl. Drizzle with olive oil and balsamic vinegar. Toss to coat.");
+	bookShelf2->setItemInside(bookShelf2Book, &tmpString);
+	bookShelf2Book = new ItemPickStoreRead("Book", "Tasty Tacos", "", "Cook ground beef with taco seasoning. Serve in taco shells with lettuce, cheese, and salsa.");
+	bookShelf2->setItemInside(bookShelf2Book, &tmpString);
+	bookShelf2Book = new ItemPickStoreRead("Book", "Appetizing Appetizers", "", "Wrap asparagus spears in prosciutto. Bake at 400°F for 10-12 minutes until prosciutto is crispy.");
+	bookShelf2->setItemInside(bookShelf2Book, &tmpString);
+	bookShelf2Book = new ItemPickStoreRead("Book", "Quick Snacks", "", "Spread peanut butter on celery sticks. Top with raisins for a healthy and fun snack.");
+	bookShelf2->setItemInside(bookShelf2Book, &tmpString);
+	bookShelf2Book = new ItemPickStoreRead("Book", "Exotic Curry Recipes", "", "Cook onions and garlic in oil until soft. Add curry powder and coconut milk. Simmer with chicken pieces for 20 minutes.");
+	bookShelf2->setItemInside(bookShelf2Book, &tmpString);
+	bookShelf2Book = new ItemPickStoreRead("Book", "Comfort Food Classics", "", "Layer sliced potatoes, cheese, and ham in a baking dish. Pour over cream and bake at 375°F for 45 minutes.");
+	bookShelf2->setItemInside(bookShelf2Book, &tmpString);
+	bookShelf2Book = new ItemPickStoreRead("Book", "Flavorful Fish Dishes", "", "Season salmon fillets with lemon, dill, and garlic. Bake at 400°F for 12-15 minutes until flaky.");
+	bookShelf2->setItemInside(bookShelf2Book, &tmpString);
+	bookShelf2Book = new ItemPickStoreRead("Book", "Refreshing Beverages", "", "Mix lemonade with iced tea in equal parts. Serve over ice with a slice of lemon.");
+	bookShelf2->setItemInside(bookShelf2Book, &tmpString);
+
+	//Add bookshelf on the right wall
+	ItemContainer* bookShelf3 = new ItemContainer("Bookshelf", "An old but full bookshelf", "On the front wall");
+	study->setItem(bookShelf3);
+	//Add books to the the right wall bookshelf
+	Item* bookShelf3Book = new ItemPickStoreRead("Book", "Digital Photography Basics", "", "Learn to use manual settings on your camera. Experiment with aperture, shutter speed, and ISO for creative effects.");
+	bookShelf3->setItemInside(bookShelf3Book, &tmpString);
+	bookShelf3Book = new ItemPickStoreRead("Book", "Basics of Calligraphy", "", "Start with simple strokes and basic letterforms. Practice consistency and fluidity with each letter.");
+	bookShelf3->setItemInside(bookShelf3Book, &tmpString);
+	bookShelf3Book = new ItemPickStoreRead("Book", "Introduction to Sculpting", "", "Begin with clay and simple tools. Focus on shaping basic forms before adding intricate details.");
+	bookShelf3->setItemInside(bookShelf3Book, &tmpString);
+	bookShelf3Book = new ItemPickStoreRead("Book", "Songwriting Essentials", "", "Write lyrics from personal experiences. Pair your lyrics with a simple chord progression to create a melody.");
+	bookShelf3->setItemInside(bookShelf3Book, &tmpString);
+	bookShelf3Book = new ItemPickStoreRead("Book", "Indoor Herb Gardening", "", "Plant herbs like basil, thyme, and mint in small pots. Place them on a sunny windowsill and water regularly.");
+	bookShelf3->setItemInside(bookShelf3Book, &tmpString);
+	bookShelf3Book = new ItemPickStoreRead("Book", "Understanding Abstract Art", "", "Explore the use of color, shape, and texture. Create art that expresses emotions rather than depicting reality.");
+	bookShelf3->setItemInside(bookShelf3Book, &tmpString);
+	bookShelf3Book = new ItemPickStoreRead("Book", "Learning to Play the Flute", "", "Hold the flute correctly and practice breath control. Start with simple scales and melodies to build your skills.");
+	bookShelf3->setItemInside(bookShelf3Book, &tmpString);
+	bookShelf3Book = new ItemPickStoreRead("Book", "Urban Gardening Tips", "", "Use vertical space and container gardening. Grow plants suitable for small spaces and urban environments.");
+	bookShelf3->setItemInside(bookShelf3Book, &tmpString);
+	bookShelf3Book = new ItemPickStoreRead("Book", "Crafting Short Stories", "", "Develop a compelling plot and well-rounded characters. Keep the narrative concise and engaging.");
+	bookShelf3->setItemInside(bookShelf3Book, &tmpString);
+	bookShelf3Book = new ItemPickStoreRead("Book", "Exploring Mixed Media Art", "", "Combine different materials like paint, paper, and found objects. Experiment with layering and textures for unique results.");
+	bookShelf3->setItemInside(bookShelf3Book, &tmpString);
+	bookShelf3Book = new ItemPickStoreRead("Book", "Introduction to Watercolor Painting", "", "Start with light washes of color on wet paper. Gradually add layers for depth, using a dry brush for fine details.");
+	bookShelf3->setItemInside(bookShelf3Book, &tmpString);
+	bookShelf3Book = new ItemPickStoreRead("Book", "Mastering Guitar Basics", "", "Learn basic chords: G, C, D, and E minor. Practice transitioning between chords smoothly.");
+	bookShelf3->setItemInside(bookShelf3Book, &tmpString);
+	bookShelf3Book = new ItemPickStoreRead("Book", "Gardening for Beginners", "", "Plant seeds in well-drained soil. Water regularly and ensure plants get at least 6 hours of sunlight per day.");
+	bookShelf3->setItemInside(bookShelf3Book, &tmpString);
+	bookShelf3Book = new ItemPickStoreRead("Book", "Haiku for the Heart", "", "Compose a haiku: three lines with a 5-7-5 syllable structure. Capture a moment in nature or an emotion.");
+	bookShelf3->setItemInside(bookShelf3Book, &tmpString);
+	bookShelf3Book = new ItemPickStoreRead("Book", "Sketching the Human Figure", "", "Start with basic shapes to outline the figure. Focus on proportions before adding details and shading.");
+	bookShelf3->setItemInside(bookShelf3Book, &tmpString);
+	bookShelf3Book = new ItemPickStoreRead("Book", "Basics of Piano Playing", "", "Familiarize yourself with the keys. Practice scales and simple melodies to improve finger coordination.");
+	bookShelf3->setItemInside(bookShelf3Book, &tmpString);
+	bookShelf3Book = new ItemPickStoreRead("Book", "Container Gardening", "", "Choose containers with good drainage. Fill with potting mix and plant herbs or flowers suitable for container growth.");
+	bookShelf3->setItemInside(bookShelf3Book, &tmpString);
+	bookShelf3Book = new ItemPickStoreRead("Book", "Sonnets of Love", "", "Write a sonnet: 14 lines in iambic pentameter with a specific rhyme scheme (ABABCDCDEFEFGG).");
+	bookShelf3->setItemInside(bookShelf3Book, &tmpString);
+	bookShelf3Book = new ItemPickStoreRead("Book", "Acrylic Painting Techniques", "", "Use a palette knife for texture. Experiment with layering colors and blending for dynamic effects.");
+	bookShelf3->setItemInside(bookShelf3Book, &tmpString);
+	bookShelf3Book = new ItemPickStoreRead("Book", "Learning to Play the Violin", "", "Hold the violin and bow correctly. Practice bowing open strings to get a clear sound before learning notes.");
+	bookShelf3->setItemInside(bookShelf3Book, &tmpString);
+	bookShelf3Book = new ItemPickStoreRead("Book", "Organic Vegetable Gardening", "", "Use compost and organic fertilizers. Rotate crops annually to maintain soil health and reduce pests.");
+	bookShelf3->setItemInside(bookShelf3Book, &tmpString);
+	bookShelf3Book = new ItemPickStoreRead("Book", "Crafting Limericks", "", "Write a limerick: five lines with an AABBA rhyme scheme. The first, second, and fifth lines are longer.");
+	bookShelf3->setItemInside(bookShelf3Book, &tmpString);
+	bookShelf3Book = new ItemPickStoreRead("Book", "Pastel Drawing for Beginners", "", "Blend pastels with your fingers or a blending stump. Use different pressures for varying intensity.");
+	bookShelf3->setItemInside(bookShelf3Book, &tmpString);
+	bookShelf3Book = new ItemPickStoreRead("Book", "Understanding Music Theory", "", "Learn the basics of scales, chords, and key signatures. Practice identifying notes and intervals by ear.");
+	bookShelf3->setItemInside(bookShelf3Book, &tmpString);
 	
 	//TO DO: store the references to the items
 
