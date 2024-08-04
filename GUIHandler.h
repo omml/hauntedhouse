@@ -18,7 +18,9 @@ private:
 	int mainOption;
 	int moveOption;
 	int exploreOption;
+	int inspectOption;
 	int itemOption;
+	int actionOption;
 	int selectInventoryOption;
 	int inventoryOption;
 	string message;
@@ -32,5 +34,8 @@ private:
 	void DisplaySelectInventoryGUI(ActionHandler* actionHandler, Room* currentRoom, Room* next, Inventory* hands, Inventory* bag, Inventory* body, Item* currentItem, Item* climbedItem);
 	void DisplayInventoryGUI(ActionHandler* actionHandler, Room* currentRoom, Room* next, Inventory* hands, Inventory* bag, Inventory* body, Item* currentItem, Item* climbedItem);
 	void DisplayInventoryItemGUI(ActionHandler* actionHandler, Room* currentRoom, Room* next, Inventory* hands, Inventory* bag, Inventory* body, Item* currentItem, Item* climbedItem);
+	void DisplayContainerGUI(ActionHandler* actionHandler, Room* currentRoom, Room* next, Inventory* hands, Inventory* bag, Inventory* body, Item* currentItem, Item* climbedItem);
+	void DisplayContainerItemGUI(ActionHandler* actionHandler, Room* currentRoom, Room* next, Inventory* hands, Inventory* bag, Inventory* body, Item* currentItem, Item* climbedItem);
+	void DisplayPlaceItemGUI(ActionHandler* actionHandler, Room* currentRoom, Room* next, Inventory* hands, Inventory* bag, Inventory* body, Item* currentItem, Item* climbedItem);
 };
 

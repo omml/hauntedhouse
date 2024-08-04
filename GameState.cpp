@@ -59,6 +59,28 @@ void GameState::setClimbedItem(Item* i)
 	_climbedItem = i;
 }
 
+void GameState::setInspectingItem(bool inspecting, Item* i)
+{
+	_isInspecting = inspecting;
+
+	if (inspecting)
+	{
+		_inspectingItem = i;
+	}
+}
+
+Item* GameState::getInspectingItem()
+{
+	if (_isInspecting)
+	{
+		return _inspectingItem;
+	}
+	else
+	{
+		return nullptr;
+	}
+}
+
 Item* GameState::getClimbedItem()
 {
 	return _climbedItem;

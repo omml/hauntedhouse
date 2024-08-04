@@ -8,6 +8,8 @@
 #include "Action.h"
 #include "ActionHandler.h"
 #include "ActionMove.h"
+#include "ActionPlaceInside.h"
+#include "ItemContainer.h"
 
 ActionHandler::ActionHandler()
 {}
@@ -24,7 +26,19 @@ bool ActionHandler::IsMovingAction(Action* a)
     return retVal;
 }
 
-bool ActionHandler::HandlePickAction(Room* r, Action* a, Item* item, Inventory* hand, Inventory* bag, Inventory* body, string* m, int moveIdx)
+bool ActionHandler::IsPlacingAction(Action* a)
+{
+    bool retVal = false;
+
+    if (ActionPlaceInside* aPlace = dynamic_cast<ActionPlaceInside*>(a))
+    {
+        retVal = true;
+    }
+
+    return retVal;
+}
+
+bool ActionHandler::HandlePickAction(Room* r, Action* a, Item* item, Inventory* hand, Inventory* bag, Inventory* body, Inventory* container, string* m, int moveIdx)
 {
     bool retVal = false;
 
@@ -42,6 +56,12 @@ bool ActionHandler::HandlePickAction(Room* r, Action* a, Item* item, Inventory* 
             bag->removeItem(item);
             // Remove item from wearing if wearing
             body->removeItem(item);
+            // Remove item from container
+            if (container != nullptr)
+            {
+                container->removeItem(item);
+            }
+
             *m = "The " + item->getName() + " was picked and now you are holding it";
             retVal = true;
         }
@@ -59,7 +79,7 @@ bool ActionHandler::HandlePickAction(Room* r, Action* a, Item* item, Inventory* 
     return retVal;
 }
 
-bool ActionHandler::HandleStoreAction(Room* r, Action* a, Item* item, Inventory* hand, Inventory* bag, Inventory* body, string* m, int moveIdx)
+bool ActionHandler::HandleStoreAction(Room* r, Action* a, Item* item, Inventory* hand, Inventory* bag, Inventory* body, Inventory* container, string* m, int moveIdx)
 {
     bool retVal = false;
 
@@ -84,6 +104,11 @@ bool ActionHandler::HandleStoreAction(Room* r, Action* a, Item* item, Inventory*
         hand->removeItem(item);
         // Remove it from body if in body
         body->removeItem(item);
+        // Remove item from container
+        if (container != nullptr)
+        {
+            container->removeItem(item);
+        }
         *m = "The " + item->getName() + " was stored in your bag";
         retVal = true;
     }
@@ -95,7 +120,7 @@ bool ActionHandler::HandleStoreAction(Room* r, Action* a, Item* item, Inventory*
     return retVal;
 }
 
-bool ActionHandler::HandleDropAction(Room* r, Action* a, Item* item, Inventory* hand, Inventory* bag, Inventory* body, string* m, int moveIdx)
+bool ActionHandler::HandleDropAction(Room* r, Action* a, Item* item, Inventory* hand, Inventory* bag, Inventory* body, Inventory* container, string* m, int moveIdx)
 {
     bool retVal = false;
 
@@ -113,13 +138,19 @@ bool ActionHandler::HandleDropAction(Room* r, Action* a, Item* item, Inventory* 
     bag->removeItem(item);
     // Remove from body if in body
     body->removeItem(item);
+    // Remove item from container
+    if (container != nullptr)
+    {
+        container->removeItem(item);
+        r->setItem(item);
+    }
     *m = "The " + item->getName() + " has been dropped to the floor";
     retVal = true;
 
     return retVal;
 }
 
-bool ActionHandler::HandleWearAction(Room* r, Action* a, Item* item, Inventory* hand, Inventory* bag, Inventory* body, string* m, int moveIdx)
+bool ActionHandler::HandleWearAction(Room* r, Action* a, Item* item, Inventory* hand, Inventory* bag, Inventory* body, Inventory* container, string* m, int moveIdx)
 {
     bool retVal = false;
 
@@ -145,7 +176,7 @@ bool ActionHandler::HandleWearAction(Room* r, Action* a, Item* item, Inventory* 
     return retVal;
 }
 
-bool ActionHandler::HandleMoveAction(Room* r, Action* a, Item* item, Inventory* hand, Inventory* bag, Inventory* body, string* m, int moveIdx)
+bool ActionHandler::HandleMoveAction(Room* r, Action* a, Item* item, Inventory* hand, Inventory* bag, Inventory* body, Inventory* container, string* m, int moveIdx)
 {
     bool retVal = false;
 
@@ -158,7 +189,7 @@ bool ActionHandler::HandleMoveAction(Room* r, Action* a, Item* item, Inventory* 
     return retVal;
 }
 
-bool ActionHandler::HandleLightAction(Room* r, Action* a, Item* item, Inventory* hand, Inventory* bag, Inventory* body, string* m, int moveIdx)
+bool ActionHandler::HandleLightAction(Room* r, Action* a, Item* item, Inventory* hand, Inventory* bag, Inventory* body, Inventory* container, string* m, int moveIdx)
 {
     bool retVal = false;
 
@@ -197,7 +228,7 @@ bool ActionHandler::HandleLightAction(Room* r, Action* a, Item* item, Inventory*
     return retVal;
 }
 
-bool ActionHandler::HandleReadAction(Room* r, Action* a, Item* item, Inventory* hand, Inventory* bag, Inventory* body, string* m, int moveIdx)
+bool ActionHandler::HandleReadAction(Room* r, Action* a, Item* item, Inventory* hand, Inventory* bag, Inventory* body, Inventory* container, string* m, int moveIdx)
 {
     bool retVal = false;
 
@@ -208,7 +239,7 @@ bool ActionHandler::HandleReadAction(Room* r, Action* a, Item* item, Inventory* 
     return retVal;
 }
 
-bool ActionHandler::HandleClimbAction(Room* r, Action* a, Item* item, Inventory* hand, Inventory* bag, Inventory* body, string* m, int moveIdx)
+bool ActionHandler::HandleClimbAction(Room* r, Action* a, Item* item, Inventory* hand, Inventory* bag, Inventory* body, Inventory* container, string* m, int moveIdx)
 {
     bool retVal = false;
 
@@ -222,42 +253,87 @@ bool ActionHandler::HandleClimbAction(Room* r, Action* a, Item* item, Inventory*
     return retVal;
 }
 
-bool ActionHandler::HandleAction(Room* r, Action* a, Item* item, Inventory* hand, Inventory* bag, Inventory* body, string* m, int moveIdx)
+bool ActionHandler::HandleInspectAction(Room* r, Action* a, Item* item, Inventory* hand, Inventory* bag, Inventory* body, Inventory* container, string* m, int moveIdx)
+{
+    bool retVal = false;
+
+    // Sets inspecting item
+    GameState::getInstance().setInspectingItem(true, item);
+
+    *m = "You are inspecting the " + item->getName();
+
+    retVal = true;
+
+    return retVal;
+}
+
+bool ActionHandler::HandlePlaceInsideAction(Room* r, Action* a, Item* item, Inventory* hand, Inventory* bag, Inventory* body, Inventory* container, string* m, int moveIdx)
+{
+    bool retVal = false;
+
+    // Tries to add item to container
+    retVal = container->addItem(item, m);
+
+    // Check if item could be added successfully
+    if (retVal)
+    {
+        ItemContainer* itemsContainer = dynamic_cast<ItemContainer*>(GameState::getInstance().getInspectingItem());
+
+        *m = item->getNameDesc() + " was placed in the " + itemsContainer->getName();
+        
+        // Reset actions
+        item->stored();
+        // Removes item from hand 
+        hand->removeItem(item);
+    }
+
+    return retVal;
+}
+
+bool ActionHandler::HandleAction(Room* r, Action* a, Item* item, Inventory* hand, Inventory* bag, Inventory* body, Inventory* container, string* m, int moveIdx)
 {
     bool retVal = false;
 
     switch (a->GetActionID())
     {
     case AIDPick:
-        retVal = HandlePickAction(r, a, item, hand, bag, body, m, moveIdx);
+        retVal = HandlePickAction(r, a, item, hand, bag, body, container, m, moveIdx);
         break;
 
     case AIDStore:
-        retVal = HandleStoreAction(r, a, item, hand, bag, body, m, moveIdx);
+        retVal = HandleStoreAction(r, a, item, hand, bag, body, container, m, moveIdx);
         break;
 
     case AIDDrop:
-        retVal = HandleDropAction(r, a, item, hand, bag, body, m, moveIdx);
+        retVal = HandleDropAction(r, a, item, hand, bag, body, container, m, moveIdx);
         break;
 
     case AIDWear:
-        retVal = HandleWearAction(r, a, item, hand, bag, body, m, moveIdx);
+        retVal = HandleWearAction(r, a, item, hand, bag, body, container, m, moveIdx);
         break;
 
     case AIDMove:
-        retVal = HandleMoveAction(r, a, item, hand, bag, body, m, moveIdx);
+        retVal = HandleMoveAction(r, a, item, hand, bag, body, container, m, moveIdx);
         break;
 
     case AIDLight:
-        retVal = HandleLightAction(r, a, item, hand, bag, body, m, moveIdx);
+        retVal = HandleLightAction(r, a, item, hand, bag, body, container, m, moveIdx);
         break;
 
     case  AIDRead:
-        retVal = HandleReadAction(r, a, item, hand, bag, body, m, moveIdx);
+        retVal = HandleReadAction(r, a, item, hand, bag, body, container, m, moveIdx);
         break;
 
     case AIDClimb:
-        retVal = HandleClimbAction(r, a, item, hand, bag, body, m, moveIdx);
+        retVal = HandleClimbAction(r, a, item, hand, bag, body, container, m, moveIdx);
+
+        break;
+    case AIDInspect:
+        retVal = HandleInspectAction(r, a, item, hand, bag, body, container, m, moveIdx);
+
+        break;
+    case AIDPlaceInside:
+        retVal = HandlePlaceInsideAction(r, a, item, hand, bag, body, container, m, moveIdx);
 
         break;
     default:

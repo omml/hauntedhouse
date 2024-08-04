@@ -16,6 +16,7 @@
 #include "ItemPickStoreRead.h"
 #include "ItemPickWear.h"
 #include "Layout.h"
+#include "ItemContainer.h"
 
 Layout::Layout() 
 {
@@ -34,6 +35,7 @@ Layout::Layout()
 	//Pour what on what
 	//string ActionNames[] = { "Pick", "Hit", "Cook", "Move", "Fight", "Light", "Paint", "LookAt", "Dig", "Climb", "Pour", "Open" };
 
+	string tmpString;
 
 
 	//Define Rooms
@@ -166,6 +168,12 @@ Layout::Layout()
 	dinChair->setDestination(dinTable);
 	dinChair->moved(1);
 	dinn->setItem(dinChair);
+
+	//Add items to study room
+	ItemContainer* bookShelf1 = new ItemContainer("Bookshelf", "An old but full bookshelf", "On the left wall");
+	study->setItem(bookShelf1);
+	Item* bookShelf1Book1 = new ItemPickStoreRead("Book", "How to cook vegetables", "", "Put carrots, potatos and onions in a frying pan. Put some oil and fry for 10 minutes.");
+	bookShelf1->setItemInside(bookShelf1Book1, &tmpString);
 
 	
 	//TO DO: store the references to the items

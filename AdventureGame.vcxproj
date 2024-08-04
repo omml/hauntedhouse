@@ -135,9 +135,11 @@
     <ClCompile Include="ActionClimb.cpp" />
     <ClCompile Include="ActionDrop.cpp" />
     <ClCompile Include="ActionHandler.cpp" />
+    <ClCompile Include="ActionInspect.cpp" />
     <ClCompile Include="ActionLight.cpp" />
     <ClCompile Include="ActionMove.cpp" />
     <ClCompile Include="ActionPick.cpp" />
+    <ClCompile Include="ActionPlaceInside.cpp" />
     <ClCompile Include="ActionRead.cpp" />
     <ClCompile Include="ActionStore.cpp" />
     <ClCompile Include="ActionWear.cpp" />
@@ -147,6 +149,7 @@
     <ClCompile Include="GUIHandler.cpp" />
     <ClCompile Include="Inventory.cpp" />
     <ClCompile Include="Item.cpp" />
+    <ClCompile Include="ItemContainer.cpp" />
     <ClCompile Include="ItemPickStoreLight.cpp" />
     <ClCompile Include="ItemMove.cpp" />
     <ClCompile Include="ItemMoveClimb.cpp" />
@@ -164,9 +167,11 @@
     <ClInclude Include="ActionClimb.h" />
     <ClInclude Include="ActionDrop.h" />
     <ClInclude Include="ActionHandler.h" />
+    <ClInclude Include="ActionInspect.h" />
     <ClInclude Include="ActionLight.h" />
     <ClInclude Include="ActionMove.h" />
     <ClInclude Include="ActionPick.h" />
+    <ClInclude Include="ActionPlaceInside.h" />
     <ClInclude Include="ActionRead.h" />
     <ClInclude Include="ActionStore.h" />
     <ClInclude Include="ActionWear.h" />
@@ -177,6 +182,7 @@
     <ClInclude Include="GUIHandler.h" />
     <ClInclude Include="Inventory.h" />
     <ClInclude Include="Item.h" />
+    <ClInclude Include="ItemContainer.h" />
     <ClInclude Include="ItemPickStoreLight.h" />
     <ClInclude Include="ItemMove.h" />
     <ClInclude Include="ItemMoveClimb.h" />

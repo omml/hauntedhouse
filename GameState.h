@@ -23,11 +23,15 @@ public:
 	int getCurrentRoomLevel();
 
 	void setClimbedItem(Item* i);
+	void setInspectingItem(bool inspecting, Item* i);
+	Item* getInspectingItem();
 	Item* getClimbedItem();
 
 private:
 	Room* _currentRoom;
 	int _currentRoomLevel;
 	Item* _climbedItem;
+	bool _isInspecting;
+	Item* _inspectingItem;
 };
 

@@ -30,6 +30,7 @@ public:
 	void displayActions();
 	int getNumActions();
 	string getDisplayString();
+	string getNameDesc();
 
 	void setHoldingItem(Item* it);
 	Item* getHoldingItem(int idx);

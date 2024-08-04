@@ -60,6 +60,11 @@ string Item::getDisplayString()
 	return getName() + " - " + getPosDesc();
 }
 
+string Item::getNameDesc()
+{
+	return getName() + " - " + getDesc();
+}
+
 void Item::displayActions()
 {
 	for (int i = 0; i < _actions.size(); i++)

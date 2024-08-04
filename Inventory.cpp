@@ -72,6 +72,15 @@ void Inventory::displayInventory()
     }
 }
 
+//  Display inventory name and description
+void Inventory::displayInventoryNameDesc()
+{
+    for (int i = 0; i < _container.size(); i++)
+    {
+        cout << "[" << i + 1 << "] " << _container[i]->getName() << " - " << _container[i]->getDesc() << endl;
+    }
+}
+
 //  add item to inventory
 bool Inventory::addItem(Item* itemPtr, string* m)
 {

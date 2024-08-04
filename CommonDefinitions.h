@@ -8,9 +8,9 @@
 #ifndef COMMONDEFS
 #define COMMONDEFS
 
-enum GUIState { IntroGUI, MainGUI, MoveGUI, ExploreGUI, ItemGUI, SelectInventoryGUI, InventoryGUI, InventoryItemGUI, MovingGUI};
+enum GUIState { IntroGUI, MainGUI, MoveGUI, ExploreGUI, ItemGUI, SelectInventoryGUI, InventoryGUI, InventoryItemGUI, MovingGUI, InspectGUI, InspectItemGUI, PlaceItemGUI};
 enum Directions { North = 0, East, South, West };
 enum ItemState { Picked, Stored, Lighted, Dropped, Wore, Hanged};
 enum ObjectType { OTPickedWore, OTPickedStored };
-enum ActionIdentifier {AIDPick, AIDStore, AIDDrop, AIDWear, AIDMove, AIDRead, AIDClimb, AIDLight};
+enum ActionIdentifier {AIDPick, AIDStore, AIDDrop, AIDWear, AIDMove, AIDRead, AIDClimb, AIDLight, AIDInspect, AIDPlaceInside };
 #endif

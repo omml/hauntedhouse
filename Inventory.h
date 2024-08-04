@@ -31,6 +31,9 @@ public:
 	//  display inventory content
 	void displayInventory();
 
+	// display inventory with name and description
+	void displayInventoryNameDesc();
+
 	//  Find an item in inventory and return position if available
 	bool findInventory(Item* itemPtr);
 

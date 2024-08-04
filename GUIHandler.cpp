@@ -6,6 +6,8 @@
 //
 #include "GameState.h"
 #include "GUIHandler.h"
+#include "Action.h"
+#include "ItemContainer.h"
 
 GUIHandler::GUIHandler()
 {
@@ -200,29 +202,41 @@ void GUIHandler::DisplayItemGUI(ActionHandler* actionHandler, Room* currentRoom,
     currentItem->displayActions();
 
     cout << "\nSelect an option > ";
-    cin >> itemOption;
+    cin >> actionOption;
 
     // Check selected option
-    if (itemOption == 0)
+    if (actionOption == 0)
     {
         guiState = ExploreGUI;
     }
-    else if (itemOption > 0 && itemOption <= currentItem->getNumActions())
+    else if (actionOption > 0 && actionOption <= currentItem->getNumActions())
     {
         message = "";
 
-        Action* a = currentItem->getAction(itemOption - 1);
+        Action* a = currentItem->getAction(actionOption - 1);
 
         // Check if item can be moved
         if (actionHandler->IsMovingAction(a))
         {
             guiState = MovingGUI;
         }
-        // Handle action
-        else if (actionHandler->HandleAction(currentRoom, a, currentItem, hands, bag, body, &message, -1))
+        // Check if is trying to place an item inside a container
+        else if (actionHandler->IsPlacingAction(a))
         {
-            climbedItem = currentItem;
-            guiState = MainGUI;
+            guiState = PlaceItemGUI;
+        }
+        // Handle action
+        else if (actionHandler->HandleAction(currentRoom, a, currentItem, hands, bag, body, nullptr, &message, -1))
+        {
+            if (a->GetActionID() == AIDInspect)
+            {
+                guiState = InspectGUI;
+            }
+            else
+            {
+                climbedItem = currentItem;
+                guiState = MainGUI;
+            }
         }
     }
 }
@@ -254,7 +268,7 @@ void GUIHandler::DisplayMovingGUI(ActionHandler* actionHandler, Room* currentRoo
         Action* a = currentItem->getAction(itemOption - 1);
 
         // Handle moving action
-        if (actionHandler->HandleAction(currentRoom, a, currentItem, hands, bag, body, &message, moveOption - 1))
+        if (actionHandler->HandleAction(currentRoom, a, currentItem, hands, bag, body, nullptr, &message, moveOption - 1))
         {
             guiState = ItemGUI;
         }
@@ -372,9 +386,112 @@ void GUIHandler::DisplayInventoryItemGUI(ActionHandler* actionHandler, Room* cur
         Action* a = currentItem->getAction(itemOption - 1);
 
         // Handle item action
-        if (actionHandler->HandleAction(currentRoom, a, currentItem, hands, bag, body, &message, -1))
+        if (actionHandler->HandleAction(currentRoom, a, currentItem, hands, bag, body, nullptr, &message, -1))
         {
             guiState = InventoryGUI;
+        }
+    }
+}
+
+void GUIHandler::DisplayContainerGUI(ActionHandler* actionHandler, Room* currentRoom, Room* next, Inventory* hands, Inventory* bag, Inventory* body, Item* currentItem, Item* climbedItem)
+{
+    // Check if it is climbing, if it is not
+    ItemContainer* item = dynamic_cast<ItemContainer*>(GameState::getInstance().getInspectingItem());
+
+    cout << message << endl << endl;
+
+    cout << "Items in " << item->getName() << ":\n";
+    cout << "[0] Go Back\n";
+
+    // Display items in room
+    item->displayItemsNameDesc();
+
+    cout << "\nSelect an option > ";
+    cin >> inspectOption;
+
+    // Check selected option
+    if (inspectOption == 0)
+    {
+        guiState = MainGUI;
+    }
+    else if (inspectOption > 0 && inspectOption <= item->getNumItemsInside())
+    {
+        message = "";
+
+        guiState = InspectItemGUI;
+    }
+
+}
+
+void GUIHandler::DisplayPlaceItemGUI(ActionHandler* actionHandler, Room* currentRoom, Room* next, Inventory* hands, Inventory* bag, Inventory* body, Item* currentItem, Item* climbedItem)
+{
+
+    ItemContainer* item = dynamic_cast<ItemContainer*>(GameState::getInstance().getInspectingItem());
+
+    cout << message << endl << endl;
+
+    // Display items in hands
+    cout << "Carrying in hands, select item to place in " << item->getName() << ", options:\n";
+    cout << "[0] Go Back\n";
+    hands->displayInventoryNameDesc();
+    numItems = hands->getNumItems();
+
+    cout << "\nSelect an option > ";
+    cin >> inventoryOption;
+
+    if (inventoryOption == 0)
+    {
+        guiState = ExploreGUI;
+    }
+    else if (inventoryOption > 0 && inventoryOption <= numItems)
+    {
+        message = "";
+
+        currentItem = hands->getItem(inventoryOption - 1);
+
+        Action* a = item->getAction(actionOption - 1);
+
+        if (actionHandler->HandleAction(currentRoom, a, currentItem, hands, bag, body, item->getContainer(), &message, -1))
+        {
+            guiState = ExploreGUI;
+        }
+    }
+
+}
+
+void GUIHandler::DisplayContainerItemGUI(ActionHandler* actionHandler, Room* currentRoom, Room* next, Inventory* hands, Inventory* bag, Inventory* body, Item* currentItem, Item* climbedItem)
+{
+    // Get container
+    ItemContainer* item = dynamic_cast<ItemContainer*>(GameState::getInstance().getInspectingItem());
+    currentItem = item->getItemInside(inspectOption - 1);
+
+    cout << message << endl << endl;
+
+    cout << currentItem->getNameDesc() << endl << endl;
+    currentItem->displayHoldingItems();
+
+    cout << "Item Options:\n";
+    cout << "[0] Go Back\n";
+
+    currentItem->displayActions();
+
+    cout << "\nSelect an option > ";
+    cin >> actionOption;
+
+    // Check selected option
+    if (actionOption == 0)
+    {
+        guiState = InspectGUI;
+    }
+    else if (actionOption > 0 && actionOption <= currentItem->getNumActions())
+    {
+        message = "";
+
+        Action* a = currentItem->getAction(actionOption - 1);
+
+        if (actionHandler->HandleAction(currentRoom, a, currentItem, hands, bag, body, item->getContainer(), &message, -1))
+        {
+            guiState = InspectGUI;
         }
     }
 }
@@ -421,6 +538,21 @@ int GUIHandler::DisplayGUI(ActionHandler* actionHandler, Room* currentRoom, Room
     case InventoryItemGUI:
         // GUI for items in inventories
         DisplayInventoryItemGUI(actionHandler, currentRoom, next, hands, bag, body, currentItem, climbedItem);
+
+        break;
+    case InspectGUI:
+        // GUI for inspecting container items
+        DisplayContainerGUI(actionHandler, currentRoom, next, hands, bag, body, currentItem, climbedItem);
+
+        break;
+    case InspectItemGUI:
+        // GUI for inspecting container items
+        DisplayContainerItemGUI(actionHandler, currentRoom, next, hands, bag, body, currentItem, climbedItem);
+
+        break;
+    case PlaceItemGUI:
+        // GUI for inspecting container items
+        DisplayPlaceItemGUI(actionHandler, currentRoom, next, hands, bag, body, currentItem, climbedItem);
 
         break;
     }
